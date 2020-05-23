@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Đăng nhập</title>
+    <script src="lib/jquery/dist/jquery.js"></script>
+</head>
+<body>
+    <table style="margin:0 auto;">
+        <tr>
+            <td>UserName</td>
+            <td>
+                <input type="text" id="txtUser" value="" placeholder="Nhập UserName" />
+            </td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td>
+                <input type="password" id="txtPass" value="" placeholder="Nhập Password" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center;">
+                <button id="btnLogin">Login</button>
+            </td>
+
+        </tr>
+
+    </table>
+    <script>
+
+        function kiemtrarong(obj) {
+            if (obj.val().length == 0) {
+                obj.addClass("loi");
+                return true;
+            }
+            obj.removeClass("loi");
+            return false;
+        }
+
+        $(function () {
+            $("#btnLogin").click(function () {
+                let user = $("#txtUser");
+                let pass = $("#txtPass");
+
+                if ($(this).html() == "Logout") {
+                    $(this).html("Login");
+                    user.next().remove();
+                    user.show();
+                    user.val('');
+                    pass.next().remove();
+                    pass.show();
+                    pass.val('');
+                    $("#thongbaoloi").html('');
+                    return true;
+                }
+
+                //if (user.val().length == 0 ) {
+                //    user.addClass("loi");
+
+                //    return false;
+                //}
+                if (kiemtrarong(user) || kiemtrarong(pass)) {
+                    return false;
+                }
+                // kiem tra user/pass có đúng không?
+                if (user.val().length < 4 || pass.val().length < 4) {
+                    $("#thongbaoloi").html("Đăng nhập thất bại");
+                    return false;
+                }
+                $("#thongbaoloi").html("Đăng nhập thành công");
+                $(this).html("Logout");
+                //ẩn 2 thẻ input
+                user.hide();
+                pass.hide();
+                //thêm 2 text
+                user.after('<span>' + user.val() + '</span>');
+                let passTemp = $("<span/>").html(pass.val());
+                pass.after(passTemp);
+
+            });
+        });
+    </script>
+    <style>
+        .loi {
+            color: red;
+            background-color: yellow;
+        }
+    </style>
+    <div id="thongbaoloi" style="text-align:center;"></div>
+</body>
+</html>
