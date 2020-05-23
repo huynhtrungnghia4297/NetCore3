@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="lib/jquery/dist/jquery.js"></script>
+</head>
+<body>
+<form>
+    From: <input type="text" id="txtFrom" value=""/>
+    <button id="btn">>>>></button>  
+    <button type="button">Send</button><br />
+    To: <input type="text" id="txtTo"/>
+</form>
+    <script>
+        $(function () {
+            $("#btn,button[type='button']").click(function (e) {
+                e.preventDefault();
+                    var giatri = $("#txtFrom").val();
+                    $("#txtTo").val(giatri);
+                    $("#txtTo").css("background-color", "yellow");
+                });
+                //var giatri = $("#txtFrom").val();
+                // 1 cách khác để lấy giá trị
+                //$("#txtFrom").attr("value")
+
+            });
+    </script>
+</body>
+</html>
